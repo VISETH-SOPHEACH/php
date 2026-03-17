@@ -1,52 +1,114 @@
 <?php
-class vehicle
+// class vehicle
+// {
+//   protected $name;
+//   protected $model;
+//   protected $year;
+
+//   public function __construct($name, $model, $year)
+//   {
+//     $this->name = $name;
+//     $this->model = $model;
+//     $this->year = $year;
+//   }
+
+//   public function getData()
+//   {
+//     return 'Engine start';
+//   }
+
+//   public function Show()
+//   {
+//     echo 'This is name : ' . $this->name . '<br>' . 'This is model : ' . $this->model . '<br>' . 'This is year : ' . $this->year;
+//   }
+// }
+// class car extends vehicle
+// {
+//   protected $door;
+//   protected $price;
+
+//   public function __construct($name, $model, $year, $Door, $Price)
+//   {
+//     parent::__construct($name, $model, $year);
+//     $this->door = $Door;
+//     $this->price = $Price;  // right ( $Price ) variable is constructor
+//   }
+
+//   public function Show()
+//   {
+//     parent::Show();
+//     echo '<br> Door is : ' . $this->door . '<br>' . 'price is : ' . $this->price;
+//   }
+
+//   public function getData()
+//   {
+//     return "Car engine started <br>";
+//   }
+// }
+
+
+// $obj = new car('bmw', 'honda', '2025', 4, '109999$');
+// echo $obj->getData();
+// $obj->Show();
+
+class Employee
 {
   protected $name;
-  protected $model;
-  protected $year;
+  protected $baseSalary;
 
-  public function __construct($name, $model, $year)
+  public function __construct($name, $baseSalary)
   {
     $this->name = $name;
-    $this->model = $model;
-    $this->year = $year;
+    $this->baseSalary = $baseSalary;
   }
 
-  public function getData()
+  public function getDetails()
   {
-    return 'Engine start';
-  }
-
-  public function Show()
-  {
-    echo 'This is name : ' . $this->name . '<br>' . 'This is model : ' . $this->model . '<br>' . 'This is year : ' . $this->year;
+    return "Name : " . $this->name . ", Base salary : $" . $this->baseSalary;
   }
 }
-class car extends vehicle
+
+class Manager extends Employee
 {
-  protected $door;
-  protected $price;
+  protected $role;
 
-  public function __construct($name, $model, $year, $Door, $Price)
+  public function __construct($name, $baseSalary, $role)
   {
-    parent::__construct($name, $model, $year);
-    $this->door = $Door;
-    $this->price = $Price;  // right ( $Price ) variable is constructor
+    parent::__construct($name, $baseSalary);
+    $this->role = $role;
   }
 
-  public function Show()
+  public function getDetails()
   {
-    parent::Show();
-    echo '<br> Door is : ' .   $this->door . '<br>' . 'price is : ' . $this->price;
+    return parent::getDetails() . " | Role : " . $this->role;
   }
 
-  public function getData()
+  public function calculateBonus()
   {
-    return "Car engine started <br>";
+    return $this->baseSalary * 0.10;
   }
 }
 
+class Developer extends Employee
+{
+  protected $programmingLanguage;
 
-$obj = new car('bmw', 'honda', '2025', 4, '109999$');
-echo $obj->getData();
-$obj->Show();
+  public function __construct($name, $baseSalary, $programmingLanguage)
+  {
+    parent::__construct($name, $baseSalary);
+    $this->programmingLanguage = $programmingLanguage;
+  }
+
+  public function getDetails()
+  {
+    return parent::getDetails() . " | Programming Langusge : " . $this->programmingLanguage;
+  }
+}
+
+$manager = new Manager("Sokha", 1000, "IT");
+$developer = new Developer("Dara", 800, "PHP");
+
+echo $manager->getDetails();
+echo "<br>Bonus: $" . $manager->calculateBonus();
+echo "<br><br>";
+echo $developer->getDetails();
