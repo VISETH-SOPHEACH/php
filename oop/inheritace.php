@@ -74,6 +74,7 @@ class Manager extends Employee
 
   public function __construct($name, $baseSalary, $role)
   {
+    # Override 
     parent::__construct($name, $baseSalary);
     $this->role = $role;
   }
@@ -95,6 +96,7 @@ class Developer extends Employee
 
   public function __construct($name, $baseSalary, $programmingLanguage)
   {
+    # Override 
     parent::__construct($name, $baseSalary);
     $this->programmingLanguage = $programmingLanguage;
   }
